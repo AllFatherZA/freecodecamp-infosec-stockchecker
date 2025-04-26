@@ -1,5 +1,7 @@
 'use strict';
 require('dotenv').config();
+require("./DB-module");
+const helmet = require('helmet')
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const cors        = require('cors');
@@ -11,6 +13,20 @@ const runner            = require('./test-runner');
 const app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
+//Content Security Policy
+app.use(helmet({
+  frameguard: {
+    action: 'deny'
+  },
+  contentSecurityPolicy: { 
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      scriptSrc: ["'self'", "trusted-cdn.com"] 
+    }
+  },
+  dnsPrefetchControl: false
+}));
 
 app.use(cors({origin: '*'})); //For FCC testing purposes only
 
