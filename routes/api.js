@@ -54,19 +54,21 @@ module.exports = function (app) {
   app.route('/api/stock-prices')
     .get(function (req, res){
       let { stock, like } = req.query;
+      console.log("symbol--",stock)
+      console.log("liked",like)
 
-      if (!Array.isArray(stock)) {
+        if (!Array.isArray(stock)) {
         stock = [stock];
       }
-  
+
       const promises = [];
-      stock.forEach((symbol) => {
+      
+        stock.forEach((symbol) => {
         promises.push(saveStock(symbol.toLowerCase(), like, req.ip));
-  
         promises.push(getStockPrice(symbol));
       });
-  
-      Promise.all(promises)
+
+       Promise.all(promises)
         .then((data) => {
           const parsedData = parseData(data);
           res.json(parsedData);
@@ -74,8 +76,7 @@ module.exports = function (app) {
         .catch((err) => {
           if (err) return console.log(err);
           res.send(err);
-        });
-      
+        });          
     });
     
 };
