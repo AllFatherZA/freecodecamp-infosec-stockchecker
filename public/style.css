@@ -16,7 +16,8 @@
 }
 
 input[type='text'] {
-  width: 100px;
+  width: 100%; /* Full width on all screens for better responsiveness */
+  max-width: 250px;
 }
 
 .m-50 {
@@ -28,25 +29,26 @@ input[type='text'] {
 }
 
 .container {
-  background-color:#151515;
+  background-color: #151515;
   padding: 30px;
   border-radius: 15px;
   max-width: 800px;
   margin: 0 auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  color: white;   
-  text-align: center;        
+  color: white;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 header {
   text-align: center;
   padding: 20px;
   margin-bottom: 30px;
-  background-color: rgba(0, 0, 0, 0.3); /* subtle transparency */
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
-
 
 header h1 {
   font-size: 2rem;
@@ -59,10 +61,10 @@ header h1 {
 .page-wrapper {
   background: linear-gradient(-45deg, #4a9ec2, #203a43, #2c5364, #1e3c72, #2a5298);
   background-size: 500% 500%;
-
   min-height: 100vh;
   padding: 40px 20px;
   color: white;
+  box-sizing: border-box;
 }
 
 @keyframes gradientShift {
@@ -72,7 +74,8 @@ header h1 {
 }
 
 input[type="text"] {
-  width: 250px;
+  width: 100%;
+  max-width: 250px;
   padding: 10px 12px;
   margin: 8px 0;
   border: 1px solid #ccc;
@@ -82,6 +85,7 @@ input[type="text"] {
   background-color: #f9f9f9;
   color: #222;
   transition: border 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
 }
 
 input[type="text"]:focus {
@@ -106,6 +110,9 @@ button {
   cursor: pointer;
   transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 250px;
+  box-sizing: border-box;
 }
 
 button:hover {
@@ -114,4 +121,62 @@ button:hover {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
+/* Mobile View Adjustments */
+@media (max-width: 600px) {
+  .p-50,
+  .m-50,
+  .mt-200 {
+    margin: 20px !important; /* Reduce large margins */
+  }
 
+  #userstories,
+  #testui {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 10px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  input[type="text"],
+  button {
+    max-width: 100%;
+  }
+}
+
+#userstories {
+  margin-left: 5%;
+  margin-top: 5%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+#userstories code {
+  display: block;
+  white-space: normal; /* allows wrapping */
+  padding: 10px;
+  margin: 8px 0;
+  font-family: monospace;
+  font-size: 0.9rem;
+  word-break: break-word;
+  overflow-x: auto; /* fallback scroll if needed */
+}
+
+@media (max-width: 600px) {
+  #userstories {
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  #userstories code {
+    font-size: 0.8rem; /* slightly smaller on mobile */
+  }
+}
